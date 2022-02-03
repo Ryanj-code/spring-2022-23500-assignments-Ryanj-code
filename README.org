@@ -1,10 +1,10 @@
 * Spring 2022 235 Assignments
 
-* Last name:
+* Last name: Jiang
 
-* First name:
+* First name: Ryan
 
-* GitHub username:
+* GitHub username: Ryanj-code
 
 * Notes:
 
