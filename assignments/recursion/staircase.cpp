@@ -23,9 +23,9 @@ int stepPerms(int n){
 // Result: 13 = 7 + 4 + 2. # of ways for 5 steps is 13.                                                  
 
 int main() {
-  std::cout << "# of ways: " << stepPerms(1) << std::endl;
-  std::cout << "# of ways: " << stepPerms(3) << std::endl;
-  std::cout << "# of ways: " << stepPerms(5) << std::endl;
-  std::cout << "# of ways: " << stepPerms(6) << std::endl;
-  std::cout << "# of ways: " << stepPerms(7) << std::endl;
+  std::cout << "# of ways: " << stepPerms(1) << std::endl; // 1
+  std::cout << "# of ways: " << stepPerms(3) << std::endl; // 4
+  std::cout << "# of ways: " << stepPerms(5) << std::endl; // 13
+  std::cout << "# of ways: " << stepPerms(6) << std::endl; // 24
+  std::cout << "# of ways: " << stepPerms(7) << std::endl; // 44
 }
