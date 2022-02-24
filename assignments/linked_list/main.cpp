@@ -41,12 +41,17 @@ int main(int argc, char *argv[]){
   // std::cout<<walker->getData()<<"\n";
 
   List *l1 = new List();
-  std::cout<<l1->toString()<<"\n";
+  std::cout << l1->toString() << "\n";
     
   l1->insert("a");
   l1->insert("b");
   l1->insert("c");
-  std::cout<<l1->toString()<<"\n";
+  std::cout << l1->toString() << "\n";
 
+  std::cout << l1->locate(2) << ", " << l1->locate(2)->getData() << "\n";  
+
+  //l1->remove(1);
+  std::cout << l1->toString() << "\n";
+    
   return 0;
 }
