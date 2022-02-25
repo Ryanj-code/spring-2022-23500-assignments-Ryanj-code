@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <iomanip>
 
+// Prints the board with setw(2) to format the print.
 void print_board(int **board, int s){
   for(int i = 0; i < s; i++){
     for(int j = 0; j < s; j++){
@@ -13,6 +14,7 @@ void print_board(int **board, int s){
   std::cout << "\n";
 }
 
+// Checks if there are any 0s left in the array, if there is return false, if not, return true.
 bool solved(int **board, int s){
   for(int i = 0; i < s; i++){
     for(int j = 0; j < s; j++){
@@ -25,6 +27,7 @@ bool solved(int **board, int s){
   return true;
 }
 
+// Solves the board by recursively checking the moves for a knight.
 void solve(int **board, int s, int r, int c, int step){
   if(r < 0 || c < 0 || r >= s || c >= s){
     return;
@@ -39,7 +42,8 @@ void solve(int **board, int s, int r, int c, int step){
   }
 
   board[r][c] = step;
-  
+
+  // Checks all directions the knight can go.
   if(!solved(board, s)) solve(board, s, r - 2, c + 1, step + 1);
   if(!solved(board, s)) solve(board, s, r - 1, c + 2, step + 1);
 
@@ -52,6 +56,7 @@ void solve(int **board, int s, int r, int c, int step){
   if(!solved(board, s)) solve(board, s, r - 2, c - 1, step + 1);
   if(!solved(board, s)) solve(board, s, r - 1, c - 2, step + 1);
   
+  // Sets the tile back to 0.
   if(!solved(board, s)) board[r][c] = 0;
 }
 
@@ -69,14 +74,15 @@ int main(){
     }
   } // Sets all values in the board to 0.
   
-  std::cout << "\n\n";
-
+  std::cout << "\nChecks if the values of the board is set to 0.\n";
   print_board(board, s);
   
+  // Calls solve and prints the solved board.
   solve(board, s, 0, 0, 1);
-  
+  std::cout << "Solved Board:\n";
   print_board(board, s);
-  
+
+  // Deletes the memory.
   for(int i = 0; i < s; i++){
     delete[] board [i];
     board[i] = nullptr;

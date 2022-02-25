@@ -1,3 +1,5 @@
+#Makefile
+
 main: knightstour.o
 	g++ -o main knightstour.o
 
