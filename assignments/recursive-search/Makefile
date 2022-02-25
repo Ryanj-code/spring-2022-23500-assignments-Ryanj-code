@@ -1,10 +1,10 @@
 #Makefile
 
-main: knightstour.o
-	g++ -o main knightstour.o
+main: main.o
+	g++ -o main main.o
 
-knightstour.o: knightstour.cpp
+main.o: main.cpp
 
 
 clean:
-	rm -f knightstour.o
+	rm -f main.o
