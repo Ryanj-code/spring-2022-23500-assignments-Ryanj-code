@@ -6,10 +6,8 @@ tests: tests.cpp OList.o Node.o
 
 
 main.o: main.cpp OList.h
-	g++ -c main.cpp
 
 tests.o: tests.cpp doctest.h OList.h 
-	g++ -c tests.cpp
 
 OList.o: OList.cpp OList.h Node.h
 

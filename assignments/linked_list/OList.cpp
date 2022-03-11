@@ -40,7 +40,7 @@ void OList::insert(int value){
 
 
 std::string OList::toString(){
-  std::string result = "";
+  std::string result = "head --> ";
   Node * walker = this->head;
   
   while(walker != nullptr){
