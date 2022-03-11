@@ -63,4 +63,11 @@ int main(){
   std::cout << "# of times 1 appears in vector a: " << count(a, 1) << "\n";
   std::cout << "Largest # in vector a: " << largest(a) << "\n";
   std::cout << "Mode of vector a: " << mode(a) << "\n";
+
+  std::vector<int> b {1, 3, 3, 4, 5, 7, 9};
+  std::cout << "Vector b: ";
+  print_vector(b);
+  std::cout << "# of times 1 appears in vector a: " << count(b, 1) << "\n";
+  std::cout << "Largest # in vector a: " << largest(b) << "\n";
+  std::cout << "Mode of vector a: " << mode(b) << "\n";
 }
