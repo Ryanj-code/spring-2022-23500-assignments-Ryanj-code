@@ -82,7 +82,7 @@ int OList::get(int loc){
   return -1;
 }
 
-void OList::remove (int loc){
+void OList::remove(int loc){
   Node *walker = head;
   Node *trailer = nullptr;
 
@@ -104,4 +104,19 @@ void OList::remove (int loc){
     trailer->setNext(walker->getNext());
     delete walker;
   }
+}
+
+void OList::reverse(){
+  Node *walker = head;
+  Node *trailer = nullptr;
+  Node *scout = nullptr;
+  
+  while(walker){
+    scout = walker->getNext();
+    walker->setNext(trailer);
+    trailer = walker;
+    walker = scout;
+  }
+
+  head = trailer;
 }
