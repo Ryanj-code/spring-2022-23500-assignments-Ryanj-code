@@ -1,14 +1,14 @@
-OBJECTS = main.o List.o Node.o 
+OBJECTS = main.o OList.o Node.o 
 CXXFLAGS=
 LDFLAGS=
 CXX=g++
 
-main: main.o List.o Node.o 
+main: main.o OList.o Node.o 
 	$(CXX) -o main $(OBJECTS)
 
-main.o: main.cpp List.h
+main.o: main.cpp OList.h
 
-List.o: List.cpp List.h Node.h
+OList.o: OList.cpp OList.h Node.h
 
 Node.o: Node.cpp Node.h
 
