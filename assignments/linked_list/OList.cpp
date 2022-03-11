@@ -45,7 +45,7 @@ std::string OList::toString(){
   
   while(walker != nullptr){
     result += std::to_string(walker->getData());
-    result += " -> ";
+    result += " --> ";
     walker = walker->getNext();
   }
   
