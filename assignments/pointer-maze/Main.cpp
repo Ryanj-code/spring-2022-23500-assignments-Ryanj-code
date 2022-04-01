@@ -12,7 +12,7 @@
 const std::string kYourName = "TODO: Replace this string with your name.";
 
 /* Change these constants to contain the paths out of your mazes. */
-const std::string kPathOutOfNormalMaze = "TODO: Replace this string with your path out of the normal maze.";
+const std::string kPathOutOfNormalMaze = "SESSWENNENSESS";
 const std::string kPathOutOfTwistyMaze = "TODO: Replace this string with your path out of the twisty maze.";
 
 int main() {
@@ -39,12 +39,12 @@ int main() {
     MazeCell* twistyStartLocation = twistyMazeFor(kYourName);
     
     /* Set a breakpoint here to explore your twisty maze! */
-    
+    /*
     if (isPathToFreedom(twistyStartLocation, kPathOutOfTwistyMaze)) {
         std::cout << "Congratulations! You've found a way out of your twisty labyrinth." << std::endl;
     } else {
         std::cout << "Sorry, but you're still stuck in your twisty labyrinth." << std::endl;
     }
-    
+    */
     return 0;
 }
