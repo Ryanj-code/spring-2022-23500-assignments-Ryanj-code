@@ -150,6 +150,58 @@ std::vector<int> qsort(std::vector<int> list){
   return list; 
 }
 
+
+//Quick sort algorithm from https://www.geeksforgeeks.org/iterative-quick-sort/
+
+// Function to swap numbers
+void swap(int* a, int* b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+/* 
+This function takes last element as pivot, places the pivot element at its 
+correct position in sorted array, and places all smaller (smaller than pivot) 
+to left of pivot and all greater elements to right of pivot.
+
+Code modifications:
+Switched pivot to good pivot as discussed in class.
+Switched variable name from x to pivot.
+*/
+int partition(std::vector<int> &arr, int l, int h){
+  int pivotIndex = h;
+  int pivot = arr[pivotIndex];
+  
+  int i = (l - 1);
+
+  for (int j = l; j <= h - 1; j++) {
+    if (arr[j] <= pivot) {
+      i++;
+      swap(&arr[i], &arr[j]);
+    }
+  }
+
+  swap(&arr[i + 1], &arr[h]);
+  return (i + 1);
+}
+ 
+/* 
+A[] --> Array to be sorted,
+l --> Starting index,
+h --> Ending index 
+*/
+void qsort2(std::vector<int> &A, int l, int h){
+  if (l < h) {
+    /* Partitioning index */
+    int p = partition(A, l, h);
+    qsort2(A, l, p - 1);
+    qsort2(A, p + 1, h);
+  }
+}
+
+
 void print_help(char *command_name){
   std::cout << "Usage: "<< command_name;
   std::cout << " [-h|-p|-m N|-s N|-a algorithm]\n\n";
@@ -160,7 +212,7 @@ void print_help(char *command_name){
 
 extern char *optarg;
 
-int main() {
+int main(int argc, char *argv[]) {
   /*
   std::vector<int> x = {3, -7, 8, 12, -16, 19, 4};
   std::cout << "Vector x before merge sort:\n";
@@ -254,8 +306,6 @@ int main() {
   
   std::cout << "Algorithm: " << algorithm << "\n";
   std::cout << "Time: " << elapsed << "\n";
-
-
   
   return 0;
 }
