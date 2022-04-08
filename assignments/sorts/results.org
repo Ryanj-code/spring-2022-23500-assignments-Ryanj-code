@@ -5,23 +5,19 @@ Observations from testing sorts:
   The merge sort was consistent as the size to be sorted increased.
   
   Example: Merge Sort 
-  s: 10000   t: 26ms
-  s: 100000  t: 247ms
+  s: 10000   t: 26ms, s: 100000  t: 247ms
 
   On the other hand, the bad quick sort was faster at first when the size is small, 
   but it took much longer than the merge sort when the size increased.
   
   Example: Bad Quick Sort
-  s: 10000   t: 21ms 
-  s: 100000  t: 652ms   
+  s: 10000   t: 21ms, s: 100000  t: 652ms   
 
   While the in-place quick sort with good pivot was faster than both the bad quick sort and merge sort. 
   
   Example: In-place Quick Sort with Good Pivot
-  s: 10000   t: 6ms
-  s: 100000  t: 210ms
+  s: 10000   t: 6ms, s: 100000  t: 210ms
 
-  
   Conclusion: 
   The merge sort stayed consistent as the size went from small to bigger sizes, while the bad quick sort was fast, 
   but the time increased much quicker and took longer than the merge sort later on. The in-place quick sort 
