@@ -1,6 +1,4 @@
 Observations from testing sorts:
-  
-  Based on the results that I got from testing the merge sort, original quick sort, and in-place quick sort:
 
   Randomized:
   
@@ -17,4 +15,5 @@ Observations from testing sorts:
   Conclusion: 
 
   The merge sort stayed consistent as the size went from small to bigger sizes, while the original quick sort was fast, but the time increased much quicker and 
-  took longer than the merge sort later on. The in-place quick sort stayed fast and was quicker than both the other two sorts from smaller sizes to bigger sizes.
+  took longer than the merge sort later on. The in-place quick sort with good pivot stayed fast and was quicker than both the other two sorts from smaller sizes 
+  to bigger sizes.
