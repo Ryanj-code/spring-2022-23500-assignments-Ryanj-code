@@ -38,15 +38,43 @@ int largest(std::vector<int> v){
 int mode(std::vector<int> v){
   int mode = 0;
   int freq = 0;
+  int max = 0;
 
   for(int i = 0; i < v.size(); i++){
-    if((count(v, v[i])) > freq){
-      freq = count(v, v[i]);
+    freq = count(v, v[i]);
+    
+    if(freq > max){
+      max = freq;
       mode = v[i];
     }
   }
 
   return mode;
+}
+
+int mode2(std::vector<int> v){
+  int large = largest(v);
+  int arr[large];
+    
+  for(int i = 0; i < large; i++){
+    arr[i] = 0;
+  }
+    
+  int max = 0;
+  int index = 0;
+
+  for(int i = 0; i < v.size(); i++){
+    arr[v[i]] += 1;
+  }
+    
+  for(int i = 0; i < large; i++){
+    if(arr[i] > max){
+      max = arr[i];
+      index = i; 
+    }
+  }
+
+  return index;
 }
 
 int main(){
