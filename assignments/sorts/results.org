@@ -3,6 +3,7 @@ Observations from testing sorts:
   Based on the results that I got from testing the merge sort, bad quick sort, and in-place quick sort:
 
   Randomized:
+  
   The merge sort was consistent as the size to be sorted increased.
   
   Example: Merge Sort 
@@ -20,10 +21,12 @@ Observations from testing sorts:
   s: 10000   t: 6ms, s: 100000  t: 210ms
   
   Sorted:
+  
   The merge sort performed consistently and was much faster than the bad quick sort while the in-place quick sort 
   with good pivot was much faster than bad quick sort because it does not check as much due to the pivot.
 
   Conclusion: 
+
   The merge sort stayed consistent as the size went from small to bigger sizes, while the bad quick sort was fast, 
   but the time increased much quicker and took longer than the merge sort later on. The in-place quick sort 
   with good pivot stayed fast and was quicker than both the other two sorts from smaller sizes to bigger sizes.
