@@ -104,7 +104,65 @@ std::vector<int> msort(std::vector<int> v){
   return merge(left, right);
 }
 
+std::vector<int> qsort(std::vector<int> list){
+
+  int i,j;
+  
+  // base case
+  if (list.size() <= 1){
+    return list;
+  }
+
+  // select a pivot value.
+  // for now, just pick list[0]
+  int pivot = list[0];
+  
+  // make 2 new vectors
+  std::vector<int> lower,higher;
+
+  // copy all the values < pivot value to lower
+  // copy all the values >= pivot value to higher;
+  for (i=1; i < list.size(); i++){
+    if (list[i] < pivot){
+      lower.push_back(list[i]);
+    } else {
+      higher.push_back(list[i]);
+    }
+  }
+  
+  lower = qsort(lower);
+  higher = qsort(higher);
+
+  // copy everything back into list
+  for (i=0 ; i < lower.size(); i++){
+    list[i]=lower[i];
+  }
+
+  list[i] = pivot;
+  i++;
+
+  for (j=0;j<higher.size();j++){
+    list[i] = higher[j];
+    i++;
+  }
+  
+  // return the sorted list
+  return list; 
+}
+
+void print_help(char *command_name){
+  std::cout << "Usage: "<< command_name;
+  std::cout << " [-h|-p|-m N|-s N|-a algorithm]\n\n";
+  std::cout << " -m MAX_ELEMENT_SIZE\n";
+  std::cout << " -s DATA_SET_SIZE\n";
+  std::cout << " -a[s|m]: s - selection, m - merge, q - qsort, r - qsort2\n";
+}
+
+
+extern char *optarg;
+
 int main() {
+  /*
   std::vector<int> x = {3, -7, 8, 12, -16, 19, 4};
   std::cout << "Vector x before merge sort:\n";
   print_vector(x);
@@ -122,7 +180,11 @@ int main() {
   y = msort(y);
   std::cout << "Vector y after merge sort:\n";
   print_vector(y);
+  */
+
   
+
+
   
   return 0;
 }
