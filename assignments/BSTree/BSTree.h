@@ -10,5 +10,6 @@ class BSTree {
   BSTree();
   void insert(int d);
   std::string get_debug_string();
+  std::string traverse(Node *root);
   void setup(); 
 };

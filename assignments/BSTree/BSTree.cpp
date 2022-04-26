@@ -9,18 +9,25 @@ void BSTree::insert(int d){
 
 }
 
+std::string BSTree::traverse(Node *root){
+  if(root){
+    return std::to_string(root->getData()) + "-->" + traverse(root->getLeft()) + traverse(root->getRight());
+  } else {
+    return "";
+  }
+}
+
 std::string BSTree::get_debug_string(){
-  std::string tmp = "";
+  std::string result = "";
 
   if(root == nullptr){
     return "";  
   } else { 
-    return std::to_string(root->getData());
+     result = traverse(root);
   }
 
-  return tmp + "nullptr"; 
+  return result + "nullptr"; 
 }
-
 
 void BSTree::setup(){
   Node *n = new Node(10);
