@@ -6,7 +6,7 @@ Node::Node(){
   right = nullptr;
 }
 
-Node:Node(int data){
+Node::Node(int data){
   this->data = data;
   left = nullptr;
   right = nullptr;
@@ -30,7 +30,7 @@ Node * Node::getRight(){
   return right;
 }
 
-void Node::SetData(int d){
+void Node::setData(int d){
   data = d;
 }
 

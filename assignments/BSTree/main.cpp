@@ -1,8 +1,9 @@
 #include <iostream>
 #include "Node.h"
+#include "BSTree.h"
 
 int main(){
-
+  /*
   Node *n = new Node(10);
   std::cout << n->getData() << "\n";
   Node *n2 = new Node(20);
@@ -22,6 +23,13 @@ int main(){
   n2->setLeft(n6);
   n6 = new Node(70);
   n2->setRight(n6);
+  */
+
+  BSTree *tree = new BSTree();
+  tree->setup();
+  
+  std::cout << tree->get_debug_string() << std::endl;
+
     
   return 0;
 }
