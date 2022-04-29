@@ -12,4 +12,5 @@ class BSTree {
   std::string get_debug_string();
   std::string traverse(Node *root);
   void setup(); 
+  int search(int value);
 };
