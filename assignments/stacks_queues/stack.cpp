@@ -5,7 +5,6 @@ Stack::Stack(){
 }
 
 Stack::~Stack(){
-  Node *walker = stack;
   while(stack != nullptr){
     Node *temp = stack;
     stack = stack->getNext();
@@ -33,7 +32,7 @@ int Stack::pop(){
 
 int Stack::top(){
   if(stack == nullptr){
-    throw STACK_ERR_EMPTY
+    throw STACK_ERR_EMPTY;
   }
   return stack->getData();
 }

@@ -10,7 +10,7 @@ Queue::~Queue(){
   delete []queue;
 }
 
-int Queue::enqueue(int val){
+void Queue::enqueue(int val){
   if(is_full()){
     throw QUEUE_ERR_FULL;
   }
@@ -23,7 +23,7 @@ int Queue::enqueue(int val){
   return;
 }
 
-int Queue:dequeue(){
+int Queue::dequeue(){
   if(is_empty()){
     throw QUEUE_ERR_EMPTY;
   }
@@ -50,7 +50,7 @@ bool Queue::is_empty(){
 }
 
 bool Queue::is_full(){
-  if(tail - head > 6){
+  if(tail - head >= 5){
     return true;
   }
   return false;
