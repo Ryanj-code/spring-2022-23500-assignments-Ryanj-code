@@ -5,6 +5,7 @@
 int main(){
   std::cout << "Create a new stack: \n";
   Stack * s = new Stack();
+  
   std::cout << "Check the stack is empty: " << std::boolalpha << s->is_empty() << "\n";
   std::cout << "Pushing 1, 2, and 3 onto the stack: \n";
   s->push(1);
