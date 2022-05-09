@@ -174,3 +174,90 @@ void BSTree::insert(int value){
 
   }
 }
+
+void BSTree:deleteValue(int value){
+  Node *p = root;
+  Node *trailer = p;
+
+  while(p){
+    trailer = p;
+
+    if(p->getData() > value){
+      p = p->getLeft();
+    }
+    else if(p->getData() < value){
+      p = p->getRight();
+    }
+
+    if(p->getData() == value){
+      break;
+    }
+  }
+
+  /*
+  Case 1: Node is a leaf
+  Use trailer(parent node) to set p(node we are deleting) to null.
+  Then delete p.
+  */
+  if(p->getLeft() == nullptr && p->getRight() == nullptr){
+    if(trailer->getData() > p->getData()){
+      trailer->setLeft(nullptr);
+    }
+    else{
+      trailer->setRight(nullptr);
+    }
+
+    p = nullptr;
+    delete p;
+    return;
+  }
+
+  /*
+  Case 2: Node has 1 child
+  Link the child of p(node we are deleting) to the parent of p(trailer).
+  Then delete p.
+  */
+  if(p->getLeft() == nullptr && p->getRight()){
+    if(trailer->getData() > p->getData()){
+      trailer->setLeft(p->getRight());
+    }
+    else{
+      trailer->setRight(p->getRight());
+    }
+
+    p == nullptr;
+    delete p;
+    return;
+  }
+  else if(p->getLeft() && p->getRight == nullptr){
+    if(trailer->getData() > p->getData()){
+      trailer->setLeft(p->getLeft());
+    }
+    else{
+      trailer->setRight(p->getLeft());
+    }
+  
+  p = nullptr;
+  delete p;
+  return;
+  }
+
+  /*
+  Case 3: Node has 2 children
+  
+  */
+  if(p->getLeft() && p->getRight()){
+    Node * temp = p->getLeft();
+
+    while(temp->getRight()){
+      temp = temp->getRight();
+    }
+
+    int x = temp->getData();
+    deleteVal(x);
+    p->setData(x);
+    return;
+  }
+
+}
+  
