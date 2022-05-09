@@ -18,4 +18,5 @@ class BSTree {
   int rsearch(int value);
   int rsearch(int value, Node *n);
   void insert(int value);
+  void deleteValue(int value);
 };
