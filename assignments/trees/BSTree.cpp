@@ -244,7 +244,8 @@ void BSTree:deleteValue(int value){
 
   /*
   Case 3: Node has 2 children
-  
+  Find smallest value on right then duplicate it. 
+  Replace the value we are deleting with that value, then delete the duplicated node.
   */
   if(p->getLeft() && p->getRight()){
     Node * temp = p->getLeft();
