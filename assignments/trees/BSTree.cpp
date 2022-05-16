@@ -110,7 +110,7 @@ int BSTree::rsearch(int value, Node *n){
     throw TREE_ERR_NULL;
   } // If n becomes nullptr, throw exception.
 
-  int data = p->getData();
+  int data = n->getData();
   if (value == data){
     return data;
   } // Just return data if the value is equal to the node's current data.
@@ -175,9 +175,9 @@ void BSTree::insert(int value){
   }
 }
 
-void BSTree:deleteValue(int value){
+void BSTree::deleteValue(int value){
   Node *p = root;
-  Node *trailer = p;
+  Node *trailer = nullptr;
 
   while(p){
     trailer = p;
@@ -188,8 +188,7 @@ void BSTree:deleteValue(int value){
     else if(p->getData() < value){
       p = p->getRight();
     }
-
-    if(p->getData() == value){
+    else if(p->getData() == value){
       break;
     }
   }
@@ -197,7 +196,7 @@ void BSTree:deleteValue(int value){
   /*
   Case 1: Node is a leaf
   Use trailer(parent node) to set p(node we are deleting) to null.
-  Then delete p.
+  Then we can delete p.
   */
   if(p->getLeft() == nullptr && p->getRight() == nullptr){
     if(trailer->getData() > p->getData()){
@@ -215,7 +214,7 @@ void BSTree:deleteValue(int value){
   /*
   Case 2: Node has 1 child
   Link the child of p(node we are deleting) to the parent of p(trailer).
-  Then delete p.
+  Then we can delete p.
   */
   if(p->getLeft() == nullptr && p->getRight()){
     if(trailer->getData() > p->getData()){
@@ -229,7 +228,7 @@ void BSTree:deleteValue(int value){
     delete p;
     return;
   }
-  else if(p->getLeft() && p->getRight == nullptr){
+  else if(p->getLeft() && p->getRight() == nullptr){
     if(trailer->getData() > p->getData()){
       trailer->setLeft(p->getLeft());
     }
@@ -255,10 +254,65 @@ void BSTree:deleteValue(int value){
     }
 
     int x = temp->getData();
-    deleteVal(x);
+    deleteValue(x);
     p->setData(x);
     return;
   }
 
 }
   
+int BSTree::countLeaves(Node *n){
+  if(n == nullptr){
+    throw 1;
+  }
+  else if(n->getLeft() == nullptr && n->getRight() == nullptr){
+    return 1;
+  }
+  
+  return countLeaves(n->getLeft()) + countLeaves(n->getRight());
+}
+
+int BSTree::countLeaves(){
+  return countLeaves(root);
+}
+
+int BSTree::treeHeight(Node *n){
+  if(n == nullptr){
+    return -1;
+  }
+
+  int left = treeHeight(n->getLeft());
+  int right = treeHeight(n->getRight());
+ 
+  if(left > right){
+    return left + 1;
+  }
+  else{
+    return right + 1;
+  }
+}
+
+int BSTree::treeHeight(){
+  return treeHeight(root);
+}
+
+int BSTree::levelSum(Node *n, int curr, int lvl){
+  if(n == nullptr){
+    return 0;
+  }
+
+  if(curr == lvl){
+    return n->getData();
+  } // Return root.
+
+  return levelSum(n->getLeft(), curr + 1, lvl) + levelSum(n->getRight(), curr + 1, lvl);
+}
+
+int BSTree::levelSum(int lvl){
+  if(lvl < 0 || treeHeight() < lvl){
+    throw 2;
+  } // Throw exception when level is negative or greater than the height of the tree.
+
+  return levelSum(root, 1, lvl);
+}
+
