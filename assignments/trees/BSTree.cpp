@@ -176,12 +176,104 @@ void BSTree::insert(int value){
 }
 
 void BSTree::deleteValue(int value){
+  Node *p = root;
+  Node *trailer = p;
   
+  // Trailer is one level behind
+  // Trailer = p;
+  while(p){
+    if(p->getData() == value){
+      break;
+    }
+    else if (p->getData() < value){
+      trailer = p;
+      p = p->getRight(); 
+    } 
+    else{
+      trailer = p;
+      p = p->getLeft();
+    }
+  }
+
+  /*
+  Case 1: Node is a leaf
+  Use trailer(parent node) to set p(node we are deleting) to null.
+  Then we can delete p.
+  */
+  if(p->getRight() == nullptr && p->getLeft() == nullptr){ 
+    if(p->getData() > trailer->getData()){
+      trailer->setRight(nullptr);
+    }
+    else{ 
+      trailer->setLeft(nullptr);
+    }
+
+    p = nullptr;
+    delete p;
+    return;
+  }
+  
+  /*
+  Case 2: Node has 1 child
+  Link the child of p(node we are deleting) to the parent of p(trailer).
+  Then we can delete p.
+  */
+  if((p->getRight() != nullptr && p->getLeft() == nullptr)
+     || (p->getRight() == nullptr && p->getLeft() != nullptr)){
+    if(p->getData() > trailer->getData()){
+      if(p->getLeft() != nullptr){
+	trailer->setRight(p->getLeft());
+      }
+      else{
+        trailer->setRight(p->getRight());
+      }
+    }
+    else{
+      if(p->getLeft() != nullptr){
+        trailer->setLeft(p->getLeft());
+      }
+      else{
+        trailer->setLeft(p->getRight());
+      }
+    }
+    
+    p = nullptr;
+    delete p;
+    return;
+  }
+  
+  /*
+  Case 3: Node has 2 children
+  Find smallest value on right then duplicate it. 
+  Replace the value we are deleting with that value, then delete the duplicated node.
+  */ 
+  if(p->getLeft() && p->getRight()){
+    Node *temp = p;
+    temp = temp->getRight();
+
+    while(temp->getLeft()){
+    temp = temp->getLeft();
+    }
+    if(p->getData() > trailer->getData()){
+      int val = temp->getData();
+      deleteValue(temp->getData());
+      p->setData(val);
+    }
+    else{
+      int val = temp->getData();
+      deleteValue(temp->getData());
+      p->setData(val);
+    }
+    
+    temp = nullptr;
+    delete temp;
+    return;
+  }
 }
   
 int BSTree::countLeaves(Node *n){
   if(n == nullptr){
-    throw 1;
+    return 0;
   }
   else if(n->getLeft() == nullptr && n->getRight() == nullptr){
     return 1;
@@ -196,7 +288,7 @@ int BSTree::countLeaves(){
 
 int BSTree::treeHeight(Node *n){
   if(n == nullptr){
-    return -1;
+    return 0;
   }
 
   int left = treeHeight(n->getLeft());
