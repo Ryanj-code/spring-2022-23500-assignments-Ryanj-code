@@ -15,4 +15,4 @@ tests.o: tests.cpp Node.h BSTree.h
 Node.o: Node.cpp Node.h
 
 clean:
-	rm -f $(OBJECTS)
+	rm -f $(OBJECTS) tests.o
