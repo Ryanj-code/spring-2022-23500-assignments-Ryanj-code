@@ -26,8 +26,7 @@ int Dictionary::hash(std::string key){
 }
 
 void Dictionary::insert(Person *p){
-  std::string name = p->get_name();
-  int i = hash(name);
+  int i = hash(p->get_name());
   arr[i]->insert(p);
 }
 
