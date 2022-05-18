@@ -1,133 +1,69 @@
 #include <iostream>
-#include <stdexcept>
 #include "List.h"
 
-List::List() {
+List::List(){
   head = nullptr;
 }
 
 List::~List(){
-  Node *trailer;
-  std::cerr << "Destructing\n";
-  while(head != nullptr){
-    trailer = head;
-    head = head->getNext();
-    delete trailer;
-  }
-}
+  Node * walker = head;
 
-void List::insert(std::string data){
-  Node *tmp = new Node(data);
-  tmp->setNext(head);
-  this->head = tmp;
-}
-
-// We need a pointer BEFORE
-// the insertion point
-//
-// We use piggybacking
-// That is, send a pointer one behind that
-// trails the walker.
-// When walker points to Node n,
-// the trailer points to Node n-1
-void List::insert(int loc, std::string data){
-  Node *tmp = new Node(data);
-
-  Node *walker = head;
-  Node *trailer=nullptr; // this one follows behind walker;
-  
-  while (walker != nullptr && loc > 0){
-    trailer = walker;
+  while (walker != nullptr){
+    Node * current = walker;
     walker = walker->getNext();
-    loc = loc - 1;
-  }
-  // walker is at n, trailer is at the point before the insertion
-  // point
-
-  // check to see if we're trying to insert beyond the end
-  // Note: we can insert a new last element.
-
-  if (loc > 0){
-    throw std::out_of_range("Out of range");
-  }
-
-  // inserting at location 0 will have trailer = nullptr
-  // so we have to deal with that special case
-  if (trailer==nullptr){
-    tmp->setNext(head);
-    head=tmp;
-  } else {
-    // and finally the normal insert code
-    tmp->setNext(walker);
-    trailer->setNext(tmp);
-  }
-}
-
-void List::remove(int loc){
-  Node *walker = head;
-  Node *trailer=nullptr; // this one follows behind walker;
-
-  while (walker != nullptr && loc > 0){
-    trailer = walker;
-    walker = walker->getNext();
-    loc = loc - 1;
+    delete current;
   }
   
-  // walker is at n, trailer is at the point before the insertion
-  // point
-
-  // check to see if we're trying to delete beyond the end
-  // Note: we can insert a new last element.
-
-  if (walker == nullptr){
-    throw std::out_of_range("Out of range");
-  }
-
-  // delete location 0 will have trailer = nullptr
-  // so we have to deal with that special case
-  if (trailer==nullptr){
-    head = walker->getNext();
-    delete walker;
-  } else {
-    // and finally the normal delete code
-    trailer->setNext(walker->getNext());
-    delete walker;
-  }
+  head = nullptr;
 }
 
-std::string List::get(int loc){
-  std::string result = "";
-  Node *walker = head;
-
-  // using walker as a boolean is
-  // the same as writing walker != nullptr
-  while (walker && loc > 0){
-    walker = walker->getNext();
-    loc--;
-  }
-  if (walker)
-    return walker->getData();
-  else
-    return "";    
+void List::insert(Person *p){
+  Node *new_node = new Node(p);
+  new_node->setNext(head);
+  head = new_node;
 }
 
-int List::length(){
-  int l = 0;
+
+Node * List::locate(int index){
+  int counter = 0;
   Node *walker = head;
-  while (walker){
-    l++;
+
+  while(walker != nullptr && counter < index){
     walker = walker->getNext();
+    counter++;
   }
-  return l;
+  return walker;
+}
+
+void List::remove(int index){
+  Node * walker = head;
+  int counter = 0;
+  while (counter < index-1){
+    walker = walker->getNext();
+    counter++;
+  }
+  Node * removing = walker->getNext();
+  walker->setNext(removing->getNext());
+  delete removing;
+
+  return;
 }
 
 std::string List::toString(){
-  std::string result = "";
-  Node *walker = this->head;
+  if (head == nullptr){
+    return "";
+  }
+
+  Node *walker = head;
+  std::string s = "";
   while (walker != nullptr){
-    result = result + walker->getData() + "->";
+    s = s + " " + walker->getPerson()->get_name() + " |";
     walker = walker->getNext();
   }
-  result = result + "null";
-  return result;
+  
+  return s;
+}
+
+Node * List::get_head(){
+  return head;
 }
